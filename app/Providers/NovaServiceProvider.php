@@ -83,7 +83,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new SuperProduct,
             new SuperDiscount,
             new OrderManagement,
-            new MenuBuilder,
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
             new \Infinety\Filemanager\FilemanagerTool(),
         ];

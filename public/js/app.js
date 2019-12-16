@@ -1838,10 +1838,10 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -1952,7 +1952,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default.a
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   name: 'cart',
   props: [],
@@ -3712,10 +3712,10 @@ $(document).ready(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dropdown_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dropdown.vue */ "./resources/js/components/dropdown.vue");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -3799,7 +3799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     dropdown: _dropdown_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default.a
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   name: 'products',
   props: ['url', 'categories'],
@@ -3955,10 +3955,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_step_progress__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-step-progress */ "./node_modules/vue-step-progress/dist/vue-step-progress.min.js");
-/* harmony import */ var vue_step_progress__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_step_progress__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-step-progress/dist/main.css */ "./node_modules/vue-step-progress/dist/main.css");
-/* harmony import */ var vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_step_progress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-step-progress */ "./node_modules/vue-step-progress/dist/vue-step-progress.min.js");
+/* harmony import */ var vue_step_progress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_step_progress__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-step-progress/dist/main.css */ "./node_modules/vue-step-progress/dist/main.css");
+/* harmony import */ var vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_step_progress_dist_main_css__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -3972,7 +3972,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['length'],
   components: {
-    'step-progress': vue_step_progress__WEBPACK_IMPORTED_MODULE_1___default.a
+    'step-progress': vue_step_progress__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
     return {
@@ -56520,10 +56520,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
-/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-toast-notification/dist/index.css */ "./node_modules/vue-toast-notification/dist/index.css");
-/* harmony import */ var vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-toast-notification */ "./node_modules/vue-toast-notification/dist/index.min.js");
+/* harmony import */ var vue_toast_notification__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-toast-notification/dist/index.css */ "./node_modules/vue-toast-notification/dist/index.css");
+/* harmony import */ var vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_toast_notification_dist_index_css__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -56537,8 +56537,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
  // add these before Vue is instantiated
 
-Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_0___default.a, vue_toast_notification__WEBPACK_IMPORTED_MODULE_3___default.a);
-Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_3___default.a, {
+Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_0___default.a, vue_toast_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.use(vue_toast_notification__WEBPACK_IMPORTED_MODULE_2___default.a, {
   // One of options
   position: 'bottom-right',
   duration: 1000
