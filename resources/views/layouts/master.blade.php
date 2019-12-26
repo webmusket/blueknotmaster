@@ -18,7 +18,7 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/cusmain.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/notification.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/measurement.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -47,7 +47,7 @@
 <script src="{{ asset('assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
-<script src="{{ asset('assets/js/notification.js') }}"></script>
+<script src="{{ asset('assets/js/measurement.js') }}"></script>
 
 
 

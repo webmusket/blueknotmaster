@@ -26,6 +26,7 @@
         "palauaandsons/nova-tags-field": "^3.0",
         "pusher/pusher-php-server": "^4.1",
         "ramsey/uuid": "^3.8",
+        "shippo/shippo-php": "^1.4",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-permission": "^2.37",
         "vyuldashev/nova-permission": "^1.6",

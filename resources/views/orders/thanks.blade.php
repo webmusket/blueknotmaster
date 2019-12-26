@@ -16,14 +16,18 @@
 	<div class="container">
 		<div class="heading" align="center">
 			<h3>YOUR COD ORDER HAS BEEN PLACED</h3>
-			<p>Your order number is {{ Session::get('order_id') }} and total payable about is INR {{ Session::get('grand_total') }}</p>
+			<p>Your order number is {{ Session::get('order_id') }} and total payable about is $ {{ Session::get('grand_total') }}</p>
+
+			<a href="/courior">Add Courior</a>
 		</div>
 	</div>
 </section>
 
 @endsection
 
+
+<!-- //destroy the sessions
 <?php
-Session::forget('grand_total');
-Session::forget('order_id');
-?>
+// Session::forget('grand_total');
+// Session::forget('order_id');
+?> -->

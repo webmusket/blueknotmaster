@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\MorphToMany;
 use App\Nova\Metrics\NewUsers;
+use Laravel\Nova\Fields\Select;
 
 class User extends Resource
 {
@@ -63,6 +64,11 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
                 ->updateRules('nullable', 'string', 'min:6'),
+            Select::make('Level')->options([
+                    'level_1' => 'Level 1',
+                    'level_2' => 'Level 2',
+                    'level_3' => 'Level 3',
+                ]),
             MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
             MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
         ];

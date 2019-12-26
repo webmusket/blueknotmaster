@@ -49,5 +49,20 @@ class User extends Authenticatable implements MustVerifyEmail
             return ReferralLink::getReferral($this, $program);
         });
     }
+
+    public function shippingAddress()
+    {
+        return [
+            'name' => $this->name,
+            'company' => $this->company,
+            'street1' => $this->street1,
+            'city' => $this->city,
+            'state' => $this->state,
+            'zip' => $this->zip,
+            'country' => $this->country,
+            'phone' => $this->phone,
+            'email' => $this->email,
+        ];
+    }
     
 }

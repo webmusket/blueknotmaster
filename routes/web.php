@@ -31,13 +31,65 @@ Route::get('/', function () {
     return view('front.index');
 });
 
-Route::get('/cus', function () {
+// Route::get('/shipment', function () {
+//     Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
+
+
+
+
     
     
+// });
+
+// Route::get('/cart', 'ShippingController@index');//cart
+// Route::post('/cart', 'ShippingController@store');//cart
+// Route::get('/checkout', 'ShippingController@index');//ship 
+// Route::post('/checkout', 'ShippingController@store');
+// Route::get('/checkout/thanks', 'ShippingController@show');
+
+
+
+
+Route::get('/measurement', function () {
+
     // $products = Product::all();
-    //return view('front.cus');
+    return view('front.measurement');
 });
 
+Route::get('/startwizard', function () {
+
+    // $products = Product::all();
+    return view('front.wizard');
+});
+
+Route::get('/editmeasurement', function () {
+
+    // $products = Product::all();
+    return view('front.editwizard');
+});
+
+
+Route::post('/measrementdata', function (Request $request) {
+
+    $data = $request->all();
+    $measurement = new App\Measurement;
+    $measurement->chest = $request->chest;
+    $measurement->hips = $request->hips;
+    $measurement->stomach = $request->stomach;
+    $measurement->waist = $request->waist;
+    $measurement->jacket_length = $request->jacket_length;
+    $measurement->soulder_size = $request->soulder_size;
+    $measurement->sleeve_length = $request->sleeve_length;
+    $measurement->bicest = $request->bicest;
+    $measurement->pant_length = $request->pant_length;
+    $measurement->rise = $request->rise;
+    $measurement->thigh = $request->thigh;
+    $measurement->knees = $request->knees;
+    $measurement->neck = $request->neck;
+    $measurement->wrists = $request->wrists;
+
+    $measurement->save();
+});
 
 Route::get('/progress', function () {
 
@@ -277,6 +329,8 @@ Route::get('/paypal/cancel','CartController@cancelPaypal');
 
  Route::get('laravel-send-email', 'EmailController@sendEMail');
 
+ //courior functionality
+Route::get('/courior','ShippingController@shipping');
 
 
 

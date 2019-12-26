@@ -41044,7 +41044,7 @@ var staticRenderFns = [
         )
       ]),
       _vm._v(" "),
-      _c("a", { staticClass: "checkuotbtn", attrs: { href: "#" } }, [
+      _c("a", { staticClass: "checkuotbtn", attrs: { href: "/checkout" } }, [
         _vm._v("Checkout now")
       ]),
       _vm._v(" or\n                "),

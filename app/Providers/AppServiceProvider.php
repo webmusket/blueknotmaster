@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        \Shippo::setApiKey(env('SHIPPO_API_KEY'));
         
   //       $this->app->bind('path.public', function() {
 		// 	return base_path() . '/../public_html';

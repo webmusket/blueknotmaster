@@ -85,7 +85,7 @@
                 </div>
                 <div class="check-now">
                 <p>Hey there! We’re all set to make your outfit flawless-fit approved.</p>
-                <a href="#" class="checkuotbtn">Checkout now</a> or
+                <a href="/checkout" class="checkuotbtn">Checkout now</a> or
                 <a href="measurements.php" class="mbtn">Update Mesurement</a>
                 </div>
             </div>

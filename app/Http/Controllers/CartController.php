@@ -239,10 +239,12 @@ class CartController extends Controller
         $userDetails = User::find($user_id);
         $countries = Country::get();
 
+        //echo "<pre>"; print_r($user_id); die;
+
         //Check if Shipping Address exists
         $shippingCount = DeliveryAddress::where('user_id',$user_id)->count();
 
-
+        //echo "<pre>"; print_r($shippingCount); die;
         $shippingDetails = array();
 
 
@@ -257,7 +259,7 @@ class CartController extends Controller
         DB::table('cart')->where(['session_id'=>$session_id])->update(['user_email'=>$user_email]);
         if($request->isMethod('post')){
             $data = $request->all();
-            /*echo "<pre>"; print_r($data); die;*/
+            //echo "<pre>"; print_r($data); die;
             // Return to Checkout page if any of the field is empty
             if(empty($data['billing_name']) || empty($data['billing_address']) || empty($data['billing_city']) || empty($data['billing_state']) || empty($data['billing_country']) || empty($data['billing_pincode']) || empty($data['billing_mobile']) || empty($data['shipping_name']) || empty($data['shipping_address']) || empty($data['shipping_city']) || empty($data['shipping_state']) || empty($data['shipping_country']) || empty($data['shipping_pincode']) || empty($data['shipping_mobile'])){
                     return redirect()->back()->with('flash_message_error','Please fill all fields to Checkout!');
@@ -270,6 +272,7 @@ class CartController extends Controller
                 // Update Shipping Address
                 DeliveryAddress::where('user_id',$user_id)->update(['name'=>$data['shipping_name'],'address'=>$data['shipping_address'],'city'=>$data['shipping_city'],'state'=>$data['shipping_state'],'pincode'=>$data['shipping_pincode'],'country'=>$data['shipping_country'],'mobile'=>$data['shipping_mobile']]);
             }else{
+
                 // Add New Shipping Address
                 $shipping = new DeliveryAddress;
                 $shipping->user_id = $user_id;
@@ -282,6 +285,7 @@ class CartController extends Controller
                 $shipping->country = $data['shipping_country'];
                 $shipping->mobile = $data['shipping_mobile'];
                 $shipping->save();
+
             }
             return redirect()->action('CartController@orderReview');
         }
@@ -297,11 +301,19 @@ class CartController extends Controller
 
         $shippingDetails = json_decode(json_encode($shippingDetails));
         $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();
+        //echo "<pre>"; print_r($userCart); die;
+
+
         foreach($userCart as $key => $product){
-            $productDetails = Product::where('id',$product->product_id)->first();
-            $userCart[$key]->image = $productDetails->image;
+            if ($product->product_type == 'readymade-products') {
+                $productDetails = Readymadeproduct::where('id',$product->product_id)->first();
+            }else{
+                $productDetails = Virtualproduct::where('id',$product->product_id)->first();
+            }
+            
+            //$userCart[$key]->image = $productDetails->image;
         }
-        /*echo "<pre>"; print_r($userCart); die;*/
+        //echo "<pre>"; print_r($userCart); die;
         return view('front.order_review')->with(compact('userDetails','shippingDetails','userCart'));
     }
 
@@ -314,7 +326,7 @@ class CartController extends Controller
             // Get Shipping Address of User
             $shippingDetails = DeliveryAddress::where(['user_email' => $user_email])->first();
            
-            //echo "<pre>"; print_r($data); die;
+           // echo "<pre>"; print_r($shippingDetails); die;
 
             if(empty(Session::get('CouponCode'))){
                $coupon_code = ''; 
@@ -356,7 +368,7 @@ class CartController extends Controller
                 $cartPro->product_id = $pro->product_id;
                 $cartPro->product_code = $pro->product_code;
                 $cartPro->product_name = $pro->product_name;
-                $cartPro->product_color = $pro->product_color;
+                //$cartPro->product_color = $pro->product_color;
                 //$cartPro->product_size = $pro->size;
                 $cartPro->product_price = $pro->price;
                 $cartPro->product_qty = $pro->quantity;
@@ -385,22 +397,26 @@ class CartController extends Controller
                     'productDetails' => $productDetails,
                     'userDetails' => $userDetails
                 ];
-                Mail::send('emails.order',$messageData,function($message) use($email){
-                    $message->to($email)->subject('Order Placed - E-com Website');    
-                });
+                // Mail::send('emails.order',$messageData,function($message) use($email){
+                //     $message->to($email)->subject('Order Placed - E-com Website');    
+                // });
                 /* Code for Order Email Ends */
                 
 
                 // COD - Redirect user to thanks page after saving order
-                return redirect('/thanks');
+                 return redirect('/thanks');
+                //return redirect('/courior');
             }else{
                 // Paypal - Redirect user to paypal page after saving order
-                return redirect('/paypal');
+                 return redirect('/paypal');
+                //return redirect('/courior');
             }
             
 
         }
     }
+
+
 
     public function thanks(Request $request){
         $user_email = Auth::user()->email;
