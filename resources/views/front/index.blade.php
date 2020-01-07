@@ -3,6 +3,7 @@
 
 
 
+
 <!--  mobile singleaction image-->
  
  <div class="mobile-hero-image">
@@ -40,6 +41,7 @@ $settings = App\Setting::all();
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
+                    <a class="btn btn-primary" href="http://ip-api.com/json/">Get location</a>
                     <h2>Get Customized Now</h2>
                     <p>{{ trans('indexpage.custom')}}</p>
                 </div>

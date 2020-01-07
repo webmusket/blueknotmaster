@@ -103,7 +103,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 col-lg-9 text-center">
-                    <div class="headerlogo"> <a href="index.php"> <img src="{{ asset('assets/img/Northsmen-Logo-Final.jpg') }}" alt="blue knot"></a></div>
+                    <div class="headerlogo"> <a href="/"> <img src="{{ asset('assets/img/Northsmen-Logo-Final.jpg') }}" alt="blue knot"></a></div>
                 </div>
                 <div class="col-lg-3">
                     <ul>
@@ -125,8 +125,16 @@
                         </li>
                         <li><a href="#">{{ Config::get('app.locale') }}</a>
 
+                            <ul>
+                                @php $locale = session()->get('locale'); @endphp
+                                <li><a href="lang/en">English</a></li>
+                                <li><a href="lang/fr">French</a></li>
+                                <li><a href="lang/es">Spanish</a></li>
+                                <li><a href="lang/jp">Japanese</a></li>
+                            </ul>
+
                             <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+<!--                     <ul class="navbar-nav ml-auto">
                         @php $locale = session()->get('locale'); @endphp
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -152,7 +160,7 @@
                                 <a class="dropdown-item" href="lang/jp"><img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese</a>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
 
                         </li>
                         <li><a href="#">USD</a>

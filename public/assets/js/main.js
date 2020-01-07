@@ -114,3 +114,26 @@
     });
 
 }(jQuery));
+
+    // $ip = \Request::ip();
+    // $ipdata = trim(file_get_contents("http://ipinfo.io/php/{$ip}"));
+
+    // $ipdata = json_decode($ipdata, TRUE);
+
+    // return $ipdata;
+    // $products = Product::all();
+$( document ).ready(function() {
+  $.get("http://ip-api.com/json", function(response) {
+
+        let country = response.country;
+        console.log(response)
+
+        $('#billing_country option[value="' + country + '"]').attr("selected", "selected");
+        $('#shipping_country option[value="' + country + '"]').attr("selected", "selected");
+        
+    }, "jsonp");
+});
+
+
+
+

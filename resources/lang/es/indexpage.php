@@ -1,4 +1,4 @@
 <?php
 return [
-   'custom' => 'Look sharp all year long with this office-ready favorite in spanish'
+   'custom' => 'Luce elegante todo el año con este favorito listo para la oficina'
 ];

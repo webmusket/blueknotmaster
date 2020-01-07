@@ -14,6 +14,7 @@ use App\Notifications\TemplateEmail;
 use Illuminate\Http\Request;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,28 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
 
+    // $ip = \Request::ip();
+    // $ipdata = trim(file_get_contents("http://ipinfo.io/php/{$ip}"));
+
+    // $ipdata = json_decode($ipdata, TRUE);
+
+    // return $ipdata;
     // $products = Product::all();
     return view('front.index');
 });
+
+Route::post('newsletter','NewsletterController@store');
+
+Route::get('/customization', function () {
+
+    return view('front.cus');
+});
+Route::get('/pdf', function () {
+
+    return view('invoices.order');
+});
+
+
 
 // Route::get('/shipment', function () {
 //     Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
@@ -37,7 +57,9 @@ Route::get('/', function () {
 
 Route::get('localization/{locale}','LocalizationController@index');
 
-Route::get('lang/{locale}', 'HomeController@lang');    
+Route::get('lang/{locale}', 'HomeController@lang'); 
+
+
     
 // });
 

@@ -15,6 +15,8 @@ use App\OrdersProduct;
 use App\Order;
 use App\Coupon;
 use Mail;
+use PDF;
+use App\Invoicer;
 
 
 class CartController extends Controller
@@ -414,21 +416,68 @@ class CartController extends Controller
                 $userDetails = json_decode(json_encode($userDetails),true);
                 /*echo "<pre>"; print_r($userDetails); die;
 */
-                /* Code for Order Email Start */
+  
+
+
+
+                /* Code for Order Email Start */              
                 $email = $user_email;
+
+                //settings of invoice
+                $settings = collect(Invoicer::get())->keyBy('key');
+
+                $settings = $settings->map(function($value, $key){
+                    return $value->value;
+                });
+
+                // echo "<pre>"; print_r($settings); die;
+
+                //our invoce is processing here
+                $pdf = PDF::loadView('invoices.order', compact('productDetails','userDetails','order_id','settings'))
+                ->setPaper($settings['paper_size']);
+
+                if ($settings['enable_debug_output'] == 1 && $settings['enable_debug_output'] == 1) {
+                    $pdf->setWarnings(true);
+                }else{
+                    $pdf->setWarnings(false);
+                }
+
+                if ($settings['spdf'] == "No") {
+                    return false;
+                }elseif($settings['spdf'] == "browser-tab"){
+                    $pdf->stream('invoice.pdf');
+                }else{
+                    $pdf->download('invoice.pdf');
+                }
+
+
+                $name =  $order_id . '.' . 'pdf' ;
+
+                // Get our disk to store the PDF in.
+
+                $pdf->save('pdf/'.$name);
+
+                // $pdf->download('invoice.pdf');
+
                 $messageData = [
                     'email' => $email,
                     'name' => $shippingDetails->name,
                     'order_id' => $order_id,
                     'productDetails' => $productDetails,
-                    'userDetails' => $userDetails
+                    'userDetails' => $userDetails,
                 ];
-                // Mail::send('emails.order',$messageData,function($message) use($email){
-                //     $message->to($email)->subject('Order Placed - E-com Website');    
-                // });
-                /* Code for Order Email Ends */
+
+                
                 
 
+                Mail::send('emails.order',$messageData,function($message) use($email,$pdf){
+                    $message->to($email)->subject('Order Placed - Northsmen')->attachData($pdf->output(), "invoice.pdf");    
+                });
+                /* Code for Order Email Ends */
+
+
+                
+                
                 // COD - Redirect user to thanks page after saving order
                  return redirect('/thanks');
                 //return redirect('/courior');

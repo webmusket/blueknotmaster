@@ -1,4 +1,16 @@
 <!--start Footer area -->
+<div style="height: 30px;">
+    @if (\Session::has('success'))
+              <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+              </div><br />
+             @endif
+             @if (\Session::has('failure'))
+              <div class="alert alert-danger">
+                <p>{{ \Session::get('failure') }}</p>
+              </div><br />
+             @endif
+</div>
 <div class="footer-area">
    <div class="mobile-footer">
                    <div class="col-sm-12 bigpc-none">
@@ -105,12 +117,13 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-4">
                 <div class="footer-widgets">
                     <h4>Join our mailing list to receive $25 off your first suit</h4>
                     <div class="email-subscription-form">
-                        <form action="index.html">
-                            <input type="email" placeholder="Email Address">
+                        <form method="post" action="{{url('newsletter')}}">@csrf
+                            <input type="text" class="form-control" name="email">
                             <input type="submit" value="Sign Up">
                         </form>
                     </div>
@@ -132,6 +145,8 @@
                             <input type="email" placeholder="Email Address">
                             <input type="submit" value="Refer Now">
                         </form>
+
+
                     </div>
                 </div>
 

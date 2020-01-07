@@ -74,6 +74,9 @@ body {
   padding: 0;
   text-align: right;
   border-bottom: 1px solid #ddd; }
+  .headertomenu .container-fluid .row{
+        background: white !important;
+  }
   .headertomenu .headerlogo img {
     text-align: center;
     padding: 10px;

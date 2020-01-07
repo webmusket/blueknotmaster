@@ -16,7 +16,6 @@
 					<td>Product Name</td>
 					<td>Product Code</td>
 					<td>Size</td>
-					<td>Color</td>
 					<td>Quantity</td>
 					<td>Unit Price</td>
 				</tr>
@@ -25,9 +24,8 @@
 						<td>{{ $product['product_name'] }}</td>
 						<td>{{ $product['product_code'] }}</td>
 						<td>{{ $product['product_size'] }}</td>
-						<td>{{ $product['product_color'] }}</td>
 						<td>{{ $product['product_qty'] }}</td>
-						<td>INR {{ $product['product_price'] }}</td>
+						<td>$ {{ $product['product_price'] }}</td>
 					</tr>
 				@endforeach
 				<tr>
@@ -37,7 +35,7 @@
 					<td colspan="5" align="right">Coupon Discount</td><td>$ {{ $productDetails['coupon_amount'] }}</td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right">Grand Total</td><td>INR {{ $productDetails['grand_total'] }}</td>
+					<td colspan="5" align="right">Grand Total</td><td>$ {{ $productDetails['grand_total'] }}</td>
 				</tr>
 			</table>
 		</td></tr>
@@ -104,10 +102,11 @@
 			</table>
 		</td></tr>
 		<tr><td>&nbsp;</td></tr>
-		<tr><td>For any enquiries, you can contact us at <a href="sultanasad8@mail.com">sultanasad8@mail.com</a></td></tr>
+		<tr><td>For any enquiries, you can contact us at <a href="makehub00@gmail.com">sultanasad8@mail.com</a></td></tr>
 		<tr><td>&nbsp;</td></tr>
-		<tr><td>Regards,<br> Team E-com</td></tr>
+		<tr><td>Regards,<br> Northsmen.com</td></tr>
 		<tr><td>&nbsp;</td></tr>
+		<tr><td>Download your invoice PDF <a href="makehub00@gmail.com">sultanasad8@mail.com</a></td></tr>
 	</table>
 </body>
 </html>

@@ -15,6 +15,7 @@ use Asad\SuperCustomization\SuperCustomization;
 use Asad\OrderManagement\OrderManagement;
 use Asad\MenuBuilder\MenuBuilder;
 use Asad\Settings\Settings;
+use Asad\Invoicer\Invoicer;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -85,6 +86,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new SuperDiscount,
             new OrderManagement,
             new Settings,
+            new Invoicer,
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
             new \Infinety\Filemanager\FilemanagerTool(),
             // new \Coderello\LaravelNovaLang\LaravelNovaLangTool(),
