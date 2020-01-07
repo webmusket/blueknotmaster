@@ -123,14 +123,36 @@
                                 <li><a href="#">Fabric Samples</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">ENG</a>
+                        <li><a href="#">{{ Config::get('app.locale') }}</a>
 
-                            <ul>
-                                <li><a href="#">En</a></li>
-                                <li><a href="#">SP</a></li>
-                                <li><a href="#">DCH</a></li>
-                                <li><a href="#">IT</a></li>
-                            </ul>
+                            <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        @php $locale = session()->get('locale'); @endphp
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Language <span class="caret"></span>
+                            </a>
+                            @switch($locale)
+                                @case('fr')
+                                <img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French
+                                @break
+                                @case('es')
+                                <img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Spain
+                                @break
+                                @case('jp')
+                                <img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese
+                                @break
+                                @default
+                                <img src="{{asset('img/us.png')}}" width="30px" height="20x"> English
+                            @endswitch
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="lang/en"><img src="{{asset('img/us.png')}}" width="30px" height="20x"> English</a>
+                                <a class="dropdown-item" href="lang/fr"><img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French</a>
+                                <a class="dropdown-item" href="lang/es"><img src="{{asset('img/es.png')}}" width="30px" height="20x"> Spanish</a>
+                                <a class="dropdown-item" href="lang/jp"><img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese</a>
+                            </div>
+                        </li>
+                    </ul>
 
                         </li>
                         <li><a href="#">USD</a>

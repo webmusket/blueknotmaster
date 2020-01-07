@@ -125,7 +125,6 @@
 	    },
 	    created(){
 	    	
-	    	
 	    	const uri = `/cart`;
 		    this.$http.get(uri).then((response) => {
 		    	//console.log(response.data);

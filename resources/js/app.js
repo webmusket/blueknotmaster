@@ -55,6 +55,8 @@ Vue.component('progressbar', require('./components/Progress.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
 
 Vue.component('notification', require('./components/Notification.vue').default);
+
+Vue.component('shipping', require('./components/Shipping.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

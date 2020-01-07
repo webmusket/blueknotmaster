@@ -21,7 +21,9 @@
         "build-order-management": "cd nova-components/OrderManagement && npm run dev",
         "build-order-management-prod": "cd nova-components/OrderManagement && npm run prod",
         "build-menu-builder": "cd nova-components/MenuBuilder && npm run dev",
-        "build-menu-builder-prod": "cd nova-components/MenuBuilder && npm run prod"
+        "build-menu-builder-prod": "cd nova-components/MenuBuilder && npm run prod",
+        "build-settings": "cd nova-components/Settings && npm run dev",
+        "build-settings-prod": "cd nova-components/Settings && npm run prod"
     },
     "devDependencies": {
         "bootstrap": "^4.0.0",

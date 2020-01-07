@@ -44,25 +44,26 @@
 // \Shippo::setApiKey('shippo_live_b2ad469ba1ffeff05b1d6cdefa8b412135576bc5');
  \Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
 	$fromAddress = array(
-	    'name' => 'Kim N Johnson',
-	    'street1' => '31683 110th St',
-	    'city' => 'Winston',
-	    'state' => 'M',
-	    'zip' => '64689',
+	    'name' => 'Shawn Ippotle',
+	    'street1' => '215 Clayton St.',
+	    'city' => 'San Francisco',
+	    'state' => 'CA',
+	    'zip' => '94117',
 	    'country' => 'US'
 	);
 
 	$toAddress = array(
-	    "name" => "Shawn Ippotle",
-	    "company" => "Shippo",
-	    "street1" => "215 Clayton St.",
-	    "city" => "San Francisco",
-	    "state" => "California",
-	    "zip" => "94117",
-	    "country" => "US",
-	    "email" => "shippotle@goshippo.com",
-	    "validate" => true
+	    'name' => 'Ms Hippo',
+	    'company' => 'San Diego Zoo',
+	    'street1' => '2920 Zoo Drive',
+	    'city' => 'San Diego',
+	    'state' => 'CA',
+	    'zip' => '92101',
+	    'country' => 'US',
+	    'phone' => '+1 555 341 9393',
+	    'email' => 'ms-hippo@goshipppo.com',
 	);
+
 
 	$parcel = array(
 	    'length'=> '5',
@@ -82,27 +83,14 @@
 	);
 
 
-	$rate = $shipment["rates"][0];
-
-	// Purchase the desired rate.
-	$transaction = Shippo_Transaction::create( array( 
-	    'rate' => $rate["object_id"], 
-	    'label_file_type' => "PDF", 
-	    'async' => false ) );
-
-	// Retrieve label url and tracking number or error message
-	if ($transaction["status"] == "SUCCESS"){
-	    echo "<pre>"; print_r( $transaction["label_url"] );
-	    echo("\n");
-	    echo "<pre>"; print_r( $transaction["tracking_number"] );
-	}else {
-	    echo "<pre>"; print_r( $transaction["messages"] );
-	}
 
 // Session::forget('grand_total');
 // Session::forget('order_id');
 ?>
 
+<div id="app">
+	<shipping shipment="{{$shipment}}"></shipping>
+</div>
 
-
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

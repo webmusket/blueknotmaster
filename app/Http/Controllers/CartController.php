@@ -19,6 +19,12 @@ use Mail;
 
 class CartController extends Controller
 {
+
+    public function __construct()
+    {
+        
+    }
+
     public function gotocart(){
         return view('front.cart');
     }
@@ -284,7 +290,27 @@ class CartController extends Controller
                 $shipping->pincode = $data['shipping_pincode'];
                 $shipping->country = $data['shipping_country'];
                 $shipping->mobile = $data['shipping_mobile'];
-                $shipping->save();
+                \Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
+                $fromAddress = \Shippo_Address::create( array(
+                    "name" => $data['shipping_name'],
+                    "company" => "Shippo",
+                    "street1" => $data['shipping_address'],
+                    "city" => $data['shipping_city'],
+                    "state" => $data['shipping_state'],
+                    "zip" => $data['shipping_pincode'],
+                    "country" => $data['shipping_country'],
+                    "phone" => $data['shipping_mobile'],
+                    "email" => $user_email
+                ));
+
+                $result = \Shippo_Address::validate($fromAddress['object_id']);
+
+                if ($result['is_complete'] == true) {
+                    $shipping->save();
+                }else{
+                    return redirect()->back()->with('flash_message_success','Address is not currect!');
+                }
+                
 
             }
             return redirect()->action('CartController@orderReview');

@@ -15,6 +15,15 @@ class ShippingController extends Controller
     	return view('courior.courior');
     }
 
+    public function getshippinglevel($id = null){
+    	$transaction = \Shippo_Transaction::create( array( 
+		    'rate' => $id, 
+		    'label_file_type' => "PDF", 
+		    'async' => false ) );
+
+    	return $transaction;
+    }
+
     public function getshippingdata($userdata){
     	$fromAddress = array(
 		    'name' => 'Shawn Ippotle',

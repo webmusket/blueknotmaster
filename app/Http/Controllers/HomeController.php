@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use App;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('auth');
     }
 
@@ -28,6 +30,13 @@ class HomeController extends Controller
         $user = Auth::user();
         //echo "<pre>"; print_r($user); die;
         return view('home')->with(compact('user'));
+    }
+
+    public function lang($locale)
+    {
+        App::setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
     }
 
     

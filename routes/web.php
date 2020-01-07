@@ -35,9 +35,9 @@ Route::get('/', function () {
 //     Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
 
 
+Route::get('localization/{locale}','LocalizationController@index');
 
-
-    
+Route::get('lang/{locale}', 'HomeController@lang');    
     
 // });
 
@@ -47,8 +47,12 @@ Route::get('/', function () {
 // Route::post('/checkout', 'ShippingController@store');
 // Route::get('/checkout/thanks', 'ShippingController@show');
 
+Route::get('/subscribe', function () {
 
+    Newsletter::subscribe('rincewind@discworld.com');
 
+    
+});
 
 Route::get('/measurement', function () {
 
@@ -288,7 +292,8 @@ Route::get('/cart', function () {
         //return view('front.cart')->with(compact('userCart'));
 //});
 
-
+//shipping level
+Route::get('/getshippinglevel/{id}','ShippingController@getshippinglevel');
 // Cart Page
 Route::match(['get', 'post'],'/cart','CartController@cart');
 

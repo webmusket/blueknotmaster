@@ -3,20 +3,25 @@
 
 
 
-<div class="dropdown">
-                              
+<!--  mobile singleaction image-->
  
  <div class="mobile-hero-image">
      <img src="./assets/img/slider-1.jpg" alt="Silder">
  </div>
   
+<?php 
+$settings = App\Setting::all();
+
+ ?>
   
    <!--start slider -->
 <div class="bk-home-slider owl-carousel">
+    @foreach($settings as $setting)
     <div class="bk-single-slider">
-        <img src="./assets/img/slider-1.jpg" alt="Silder">
+        <img src="/images/{{$setting->image}}" alt="Silder">
     </div>
-    <div class="bk-single-slider">
+    @endforeach
+    <!-- <div class="bk-single-slider">
         <img src="./assets/img/slider-2.jpg" alt="Silder">
     </div>
     <div class="bk-single-slider">
@@ -24,7 +29,7 @@
     </div>
     <div class="bk-single-slider">
         <img src="./assets/img/slider-4.jpg" alt="Silder">
-    </div>
+    </div> -->
 </div>
 <!--end slider section-->
 
@@ -36,7 +41,7 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <h2>Get Customized Now</h2>
-                    <p>Look sharp all year long with this office-ready favorite.</p>
+                    <p>{{ trans('indexpage.custom')}}</p>
                 </div>
             </div>
         </div>
@@ -247,6 +252,7 @@
     </div>
 </div>
 <!--   end call to action-->
+
 
 
 
