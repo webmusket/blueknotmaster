@@ -3,8 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Setting;
-
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
@@ -16,104 +14,44 @@ use App\Setting;
 |
 */
 
-Route::get('/getset', function (Request $request) {
-    $settings = Setting::all();
-    return $settings;
-});
-Route::post('/saveslider', function (Request $request) {
- 
-	$data = $request->all();
+// Route::get('/endpoint', function (Request $request) {
+//     //
+// });
 
-    $settings = new Setting;
+Route::get('/default-setting', function () {
+
+    $general = array(
+    	'app_name' => config('app.name'),
+    	'admin_name' => config('nova.name'),
+    	'app_url' => config('app.url'),
+    	'admin_url' => config('nova.path'),
+    	'pagination' => config('nova.pagination'),
+        'mail_driver' => config('mail.driver'),
+        'mail_host' => config('mail.host'),
+        'mail_port' => config('mail.port'),
+        'mail_address' => config('mail.from.address'),
+        'mail_name' => config('mail.from.name'),
+        'mail_username' => config('mail.username'),
+        'mail_password' => config('mail.password'),
+        'mail_encription' => config('mail.encryption'),
+
+    );
 
 
 
-    $settings->title = $data['title'];
-
-
-
-    $settings->desc = $data['desc'];
-
-
-
-   	if($request->get('image'))
-       {
-
-          $image = $request->get('image');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          \Image::make($request->get('image'))->save(public_path('images/').$name);
-        }
-
-    $settings->image = $name;
-
-    $settings->save();
-
-    return "slider saved";
-
-});
-
-Route::post('/deleteslider', function (Request $request) {
-    
-    $settings = Setting::findorfail($request->id);
-    $settings->delete();
-
-    return "deleted";
-});
-
-Route::post('/editslider', function (Request $request) {
-    
-    $settings = Setting::findorfail($request->id);
-
-    return $settings;
-});
-
-Route::post('/saveedit', function (Request $request) {
-
-    
-    $settings = Setting::findorfail($request->id);
-
-	$data = $request->all();
-
-    $settings->title = $data['title'];
-
-    $settings->desc = $data['desc'];
-
-    if($request->get('image'))
-       {
-          $image = $request->get('image');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          \Image::make($request->get('image'))->save(public_path('images/').$name);
-
-          $settings->image = $name;
-        }
-
-    
-
-    $settings->save();
-
-    return "updated";
+    return response()->json([
+	    'general' => $general,
+	]);
 });
 
 
-Route::get('/companies', function (Request $request) {
-    return Company::all();
-});
+Route::put('/update-setting', function (Request $request) {
 
 
-Route::get('/deletecompany/{id}', function (Request $request,$id) {
-    $company = Company::findOrFail($id);
-    $company->delete();
-    return '';
-});
+    // putenv('APP_NAME='.$request->general['app_name']);
+    config(['mail.from.name' => $request->general['mail_name']]);
 
+    Artisan::call('config:cache');
 
-Route::post('/addcompany', function (Request $request) {
-    $company = Company::create($request->all());
-        return $company;
-});
-
-Route::post('/editcompanies/{id}', function (Request $request,$id) {
-    $company = Company::findOrFail($id);
-        $company->update($request->all());
-        return $company;
+    return "Updated Successfully";
 });

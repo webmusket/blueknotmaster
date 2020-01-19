@@ -9,13 +9,9 @@ use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Metrics\ProductCount;
 use App\Nova\Metrics\UserCount;
 use App\Nova\Metrics\NewOrders;
-use Asad\SuperProduct\SuperProduct;
-use Asad\SuperDiscount\SuperDiscount;
-use Asad\SuperCustomization\SuperCustomization;
-use Asad\OrderManagement\OrderManagement;
-use Asad\MenuBuilder\MenuBuilder;
-use Asad\Settings\Settings;
+use Infinety\MenuBuilder\MenuBuilder;
 use Asad\Invoicer\Invoicer;
+use Asad\Settings\Settings;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -81,14 +77,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            new SuperCustomization,
-            new SuperProduct,
-            new SuperDiscount,
-            new OrderManagement,
-            new Settings,
             new Invoicer,
+            new Settings,
+            // new MenuBuilder,
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
             new \Infinety\Filemanager\FilemanagerTool(),
+            new \Infinety\MenuBuilder\MenuBuilder(),
             // new \Coderello\LaravelNovaLang\LaravelNovaLangTool(),
         ];
     }

@@ -25,7 +25,15 @@ Vue.use(VueToast, {
   position: 'bottom-right',
   duration: 1000,
   
-})
+});
+
+
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+
+import {routes} from './routes';
 
 
 // import Vue from 'vue'
@@ -57,13 +65,22 @@ Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('notification', require('./components/Notification.vue').default);
 
 Vue.component('shipping', require('./components/Shipping.vue').default);
+
+Vue.component('profile', require('./components/Profile.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const router = new VueRouter({
+    routes, // short for `routes: routes`
+    mode:'hash',
+
+})
+
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
 });

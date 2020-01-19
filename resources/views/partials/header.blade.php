@@ -204,10 +204,11 @@
     <div class="headermenu">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-9 text-center">
+                <div class="col-lg-10 text-center">
                     <div class="mainmneu">
                         <ul id="main_menu">
-                            <li><a href="#">Organic</a>
+                            {!! menu_builder('main-menu') !!}
+                            <!-- <li><a href="#">Organic</a>
                                 <ul>
                                     <li><a href="/virtual-products/organic-suits">Organic Suits</a></li>
                                     <li><a href="/virtual-products/organic-shirts">Organic Shirts</a></li>
@@ -291,15 +292,14 @@
                                     <li><a href="all-products.php">Suspenders</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Weddings</a></li>
+                            <li><a href="#">Weddings</a></li> -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 text-right">
+                <div class="col-lg-2 text-right">
+
+                    
                     <ul class="cartmenu">
-                        <li class="nav-item">
-                        @include('home1')
-                        </li>
 
                         @guest
                             <li class="nav-item">

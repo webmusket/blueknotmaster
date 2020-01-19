@@ -25,38 +25,37 @@
                         class="pr-2"
                     />
                     <label
-                        :for="category"
                         v-text="cat[1]"
                         @click="toggleOption(cat[0])"
                         class="w-full"
                     ></label>
                 </div>
               </div> 
-              {{last}}
+
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
             </p>
 
-              <button class="btn btn-primary" style="height: 40px; margin-top: 10px;" id="showadd"> add new category</button>
+              <a @click="openform()" class="btn btn-primary" style="height: 40px; margin-top: 10px;" > add new category</a>
+              <div v-if='addcat'>
+                <form style=" margin-top: 10px;" @submit.prevent="updatecategory">
+                  <div id="addcat">
+                        <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail1" v-model="addcategory.name" placeholder="Add category">
+                        
+                      </div>
 
-              <form style=" margin-top: 10px;" @submit.prevent="updatecategory">
-                <div id="addcat">
-                      <div class="form-group">
-                      <input type="text" class="form-control" id="exampleInputEmail1" v-model="addcategory.name" placeholder="Add category">
-                      
-                    </div>
 
-
-                    <select  class="form-control" v-model='addcategory.parent'>
-                        <option v-model="parent" value="0" selected>------Parent Category------</option>
-                        <option v-for='cat in catnames' v-model='parent' :value='cat[0]'> {{cat[1]}} </option>
-                    </select>
-                    {{names}}
-                   
-                    <br>
-                    <button type="submit"  class="btn btn-secondary">Add CAtegory</button>
-                </div>  
-              </form>      
+                      <select  class="form-control" v-model='addcategory.parent'>
+                          <option v-model="parent" value="0" selected>------Parent Category------</option>
+                          <option v-for='cat in catnames' v-model='parent' :value='cat[0]'> {{cat[1]}} </option>
+                      </select>
+                     
+                      <br>
+                      <button type="submit"  class="btn btn-secondary">Add CAtegory</button>
+                  </div>  
+                </form> 
+              </div>     
           </div>
 
         </template>
@@ -67,7 +66,6 @@
 
 <script>
 
-  Vue.config.devtools = true;
 
 function  main(category){
   let parent = []
@@ -153,10 +151,6 @@ function sub(parenttemp,child){
 
 
 
-
-
-import $ from 'jquery'
-
 import { FormField, HandlesValidationErrors } from 'laravel-nova'
 
 export default {
@@ -168,6 +162,7 @@ export default {
         return {
            // checked: "checked",
            //addcategory.parent: 0
+            addcat: false,
             value: [],
             getcat: [],
             all:[],
@@ -183,20 +178,23 @@ export default {
     },
     created(){
         const uri = `/getcategories`;
-        this.axios.get(uri).then((response) => {
+        Nova.request().get(uri).then((response) => {
             this.categories = main(response.data)
         });
     },
 
     mounted(){
-      
-       $('#addcat').hide();
 
-       $('#showadd').click(function(e){
-            e.preventDefault();
-            $('#addcat').show();
-            $(this).hide()
-       })
+      
+      
+       // $('#addcat').hide();
+       // document.getElementById('#addcat').style.visibility = "hidden";
+
+       // $('#showadd').click(function(e){
+       //      e.preventDefault();
+       //      $('#addcat').show();
+       //      $(this).hide()
+       // })
 
        
 
@@ -279,18 +277,10 @@ export default {
             this.value = this.field.value || []
           }
         },
-        /*
-         * Set the initial, internal value for the field.
-         */
-        // setInitialValue() {
-        //   if (typeof this.value == 'string') {
-        //     this.value = this.value ?? this.field.value.split(',').map(elem => { return Number(elem)}) ||  []
-        //   }
-        //   this.value = this.value ? this.field.value || []
-        // },
-        /**
-         * Fill the given FormData object with the field's internal value.
-         */
+        openform(){
+          this.addcat = true
+        },
+
         fill(formData) {
           formData.append(this.field.attribute, this.value || [])
         },
@@ -302,14 +292,14 @@ export default {
         },
         updatecategory() {
           let uri = `/update-category`;
-          this.axios.post(uri, this.addcategory).then((response) => {  
+          Nova.request().post(uri, this.addcategory).then((response) => {  
             // Display a warning toast, with no title
               this.value.push(response.data)
               let key = response.data
               
 
             const url = `/getcategories`;
-            this.axios.get(url).then((response) => {
+            Nova.request().get(url).then((response) => {
                 this.categories = main(response.data)
             });                       
           });
@@ -369,6 +359,8 @@ export default {
           return parentcat
         },
 */
+
+
 </script>
 
 <style>

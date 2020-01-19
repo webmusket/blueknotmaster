@@ -419,6 +419,7 @@ Testimonial CSS
     list-style: none;
     line-height: 2; }
     .footer-area ul a {
+      margin-bottom: -10px;
       color: #4c4c4d; }
   .footer-area .social-links li {
     display: inline-block;

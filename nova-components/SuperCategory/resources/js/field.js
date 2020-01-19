@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Nova.booting((Vue, router, store) => {

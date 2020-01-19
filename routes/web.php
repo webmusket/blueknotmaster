@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,28 @@ Route::get('/pdf', function () {
 });
 
 
+// Route::get('/usercart',function(){
+//     $session_id = Session::get('session_id');
 
+//     $q = Cart::orderBy('created_at', 'desc')
+
+//         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+//         ->get(array(
+//               DB::raw('Date(created_at) as date'),
+//               DB::raw('COUNT(*) as "views"')
+//           ));
+
+//     // return $q;
+// });
+
+
+Route::get('/usercart', 'HomeController@userCart');
+
+Route::get('/profileinfo', 'HomeController@profileInfo');
+
+Route::get('/profilemeasurement', 'HomeController@profileMeasurement');
+
+Route::get('/showmeasurement/{id}', 'HomeController@showMeasurement');
 // Route::get('/shipment', function () {
 //     Shippo::setApiKey('shippo_test_a764a17b2e3bb8305e11f345827ec9e35600d5c9');
 
@@ -217,7 +239,7 @@ Route::post('/sendemail/send','SendEmailController@send');
 
 Route::get('/virtual-products/{url}','ProductsController@getproducts');
 
-Route::get('/readymade-products/{url}','ProductsController@getproducts');
+Route::get('/readymade-products/{url}','ProductsController@getproducts')->name('readymade.url');
 
 Route::match(['get', 'post'],'/getreadymadeproducts/{url}','ProductsController@viewReadymadeProbycat');
 
@@ -234,85 +256,7 @@ Route::get('/products/{url}/{slug}/{pro}','ProductsController@viewProduct');
 
 Route::match(['get', 'post'],'/getreadymadefilterproduct/{url}/{filter}','FilterproController@getreadymadefilterproduct');
 Route::match(['get', 'post'],'/getvirtualfilterproduct/{url}/{filter}','FilterproController@getvirtualfilterproduct');
-// Route::match(['get','post'],'filter-product','ProductsController@getfilterproduct');
 
-// Route::match(['get','post'],'filter/{group}/{value}/{category}','ProductsController@getfilter');
-
-//Route::get('/products/{url}/{slug}/{pro}','ProductsController@viewSingleProduct');
-
-
-
-/*
-
-Route::get('/products/single/{slug}', function ($id = null) {
-    
-    $products = Product::find($id);
-
-    //echo "<pre>"; print_r($products); die;
-
-    return view('front.single')->with(compact('products'));
-
-    
-});
-
-
-
-Route::get('/products/single/customization/{slug}', function () {
-    return view('front.customization');
-});
-
-
-Route::get('addtocart', function (Request $request) {
-
-    if(Auth::check()){
-        $userId = Auth::id();
-        $email = Auth::user()->email;
-        if($request->isMethod('post')){
-            $data = $request->all();
-        /*echo "<pre>"; print_r($data); die;*/
- /*       if(empty(Auth::user()->email)){
-            $data['user_email'] = '';    
-        }else{
-            $data['user_email'] = Auth::user()->email;
-        }
-
-        $session_id = Session::get('session_id');
-
-        if(!isset($session_id)){
-            $session_id = str_random(40);
-            Session::put('session_id',$session_id);
-        }
-
-        $countProducts = DB::table('cart')->where(['product_id' => $data['product_id'],'session_id' => $session_id])->count();
-        if($countProducts>0){
-            return redirect()->back()->with('flash_message_error','Product already exist in Cart!');
-        }
-
-        DB::table('cart')
-        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
-            'product_price' => $data['product_price'],'product_quantity' => $data['product_quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
-
-        return redirect('/products')->with('flash_message_success','Product has been added in Cart!');
-
-    }
-}
-    
-});*/
-
-/*
-Route::get('/cart', function () {         
-        if(Auth::check()){
-            $user_email = Auth::user()->email;
-            $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();     
-        }else{
-            $session_id = Session::get('session_id');
-            $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();    
-        }
-        
-        
-        /*echo "<pre>"; print_r($userCart); die;*/
-        //return view('front.cart')->with(compact('userCart'));
-//});
 
 //shipping level
 Route::get('/getshippinglevel/{id}','ShippingController@getshippinglevel');

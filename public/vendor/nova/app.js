@@ -4361,7 +4361,7 @@ exports.default = {
         return '';
       }
 
-      return this.fieldName || this.field.singularLabel || this.field.name;
+      return this.fieldName || this.field.name || this.field.singularLabel;
     },
 
 
@@ -5219,10 +5219,10 @@ var actions = {
     this.insertAround('*', '*');
   },
   image: function image() {
-    this.insertBefore('![](http://)', 2);
+    this.insertBefore('![](url)', 2);
   },
   link: function link() {
-    this.insertAround('[', '](http://)');
+    this.insertAround('[', '](url)');
   },
   toggleFullScreen: function toggleFullScreen() {
     var _this = this;
@@ -14428,7 +14428,7 @@ exports.default = {
 
 
     /**
-     * Determinw whether the delete menu should be shown to the user
+     * Determine whether the delete menu should be shown to the user
      */
     shouldShowDeleteMenu: function shouldShowDeleteMenu() {
       return Boolean(this.selectedResources.length > 0) && this.canShowDeleteMenu;
@@ -14560,6 +14560,7 @@ var _laravelNova = __webpack_require__("./node_modules/laravel-nova/dist/index.j
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -14989,11 +14990,6 @@ exports.default = {
 
           _this2.getAllMatchingResourceCount();
 
-          if (!_this2.hasId) {
-            _this2.selectAllMatchingResources = true;
-            _this2.selectAllResources();
-          }
-
           Nova.$emit('resources-loaded');
         });
       });
@@ -15384,12 +15380,12 @@ exports.default = {
      * Determine whether to show the selection checkboxes for resources
      */
     shouldShowCheckBoxes: function shouldShowCheckBoxes() {
-      return Boolean(this.hasId && this.hasResources && !this.viaHasOne) && Boolean(this.actionsAreAvailable || this.authorizedToDeleteAnyResources || this.canShowDeleteMenu);
+      return Boolean(this.hasResources && !this.viaHasOne) && Boolean(this.actionsAreAvailable || this.authorizedToDeleteAnyResources || this.canShowDeleteMenu);
     },
 
 
     /**
-     * Determinw whether the delete menu should be shown to the user
+     * Determine whether the delete menu should be shown to the user
      */
     shouldShowDeleteMenu: function shouldShowDeleteMenu() {
       return Boolean(this.selectedResources.length > 0) && this.canShowDeleteMenu;
@@ -15457,7 +15453,7 @@ exports.default = {
 
 
     /**
-     * Determinw whether the user is authorized to perform actions on the delete menu
+     * Determine whether the user is authorized to perform actions on the delete menu
      */
     canShowDeleteMenu: function canShowDeleteMenu() {
       return this.hasId && Boolean(this.authorizedToDeleteSelectedResources || this.authorizedToForceDeleteSelectedResources || this.authorizedToDeleteAnyResources || this.authorizedToForceDeleteAnyResources || this.authorizedToRestoreSelectedResources || this.authorizedToRestoreAnyResources);
@@ -50062,7 +50058,7 @@ var render = function() {
     attrs: { type: "checkbox", disabled: _vm.disabled },
     domProps: { checked: _vm.checked },
     on: {
-      input: function($event) {
+      change: function($event) {
         return _vm.$emit("input", $event)
       }
     }
@@ -51651,7 +51647,8 @@ var render = function() {
                     on: {
                       order: _vm.orderByField,
                       delete: _vm.deleteResources,
-                      restore: _vm.restoreResources
+                      restore: _vm.restoreResources,
+                      actionExecuted: _vm.getResources
                     }
                   })
                 ],
@@ -61170,6 +61167,14 @@ var _Nova2 = _interopRequireDefault(_Nova);
 
 __webpack_require__("./resources/js/plugins/index.js");
 
+var _Localization = __webpack_require__("./resources/js/mixins/Localization.js");
+
+var _Localization2 = _interopRequireDefault(_Localization);
+
+var _ThemingClasses = __webpack_require__("./resources/js/mixins/ThemingClasses.js");
+
+var _ThemingClasses2 = _interopRequireDefault(_ThemingClasses);
+
 __webpack_require__("./resources/js/fields.js");
 
 __webpack_require__("./resources/js/components.js");
@@ -61183,8 +61188,16 @@ _vue2.default.config.productionTip = false; /**
                                              */
 
 _vue2.default.config.devtools = true;
+_vue2.default.mixin(_Localization2.default);
 
-_vue2.default.mixin(__webpack_require__("./resources/js/base.js"));
+/**
+ * If configured, register a global mixin to add theming-friendly CSS
+ * classnames to Nova's built-in Vue components. This allows the user
+ * to fully customize Nova's theme to their project's branding.
+ */
+if (window.config.themingClasses) {
+  _vue2.default.mixin(_ThemingClasses2.default);
+}
 
 /**
  * Next, we'll setup some of Nova's Vue components that need to be global
@@ -61196,31 +61209,6 @@ _vue2.default.mixin(__webpack_require__("./resources/js/base.js"));
     return new _Nova2.default(config);
   };
 }).call(window);
-
-/***/ }),
-
-/***/ "./resources/js/base.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = {
-  methods: {
-    /**
-     * Translate the given key.
-     */
-    __: function __(key, replace) {
-      var translation = window.config.translations[key] ? window.config.translations[key] : key;
-
-      _.forEach(replace, function (value, key) {
-        translation = translation.replace(':' + key, value);
-      });
-
-      return translation;
-    }
-  }
-};
 
 /***/ }),
 
@@ -69613,6 +69601,53 @@ exports.default = {
      */
     hasPivotActions: function hasPivotActions() {
       return this.availablePivotActions.length > 0;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/mixins/Localization.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  methods: {
+    /**
+     * Translate the given key.
+     */
+    __: function __(key, replace) {
+      var translation = window.config.translations[key] ? window.config.translations[key] : key;
+
+      _.forEach(replace, function (value, key) {
+        translation = translation.replace(':' + key, value);
+      });
+
+      return translation;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/mixins/ThemingClasses.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  mounted: function mounted() {
+    if (this.$el && this.$el.classList !== undefined) {
+      this.$el.classList.add("nova-" + _.kebabCase(this.$options.name));
     }
   }
 };

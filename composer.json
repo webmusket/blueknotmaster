@@ -10,19 +10,17 @@
     "require": {
         "php": "^7.1.3",
         "asad/invoicer": "*",
-        "asad/order-management": "*",
+        "asad/menu-builder": "*",
         "asad/settings": "*",
-        "asad/super-customization": "*",
-        "asad/super-discount": "*",
-        "asad/super-product": "*",
         "barryvdh/laravel-dompdf": "^0.8.5",
         "benjaminhirsch/nova-slug-field": "^1.2",
         "blueknot/super-category": "*",
+        "brick/math": "^0.8.9",
         "dillingham/nova-button": "^1.0",
         "fideloper/proxy": "^4.0",
         "fourstacks/nova-repeatable-fields": "^1.2",
-        "infinety-es/nova-filemanager": "^2.2",
-        "infinety-es/nova-menu-builder": "^2.0",
+        "infinety-es/nova-filemanager": "^2.6",
+        "infinety-es/nova-menu-builder": "^1.0.0",
         "intervention/image": "^2.5",
         "laravel/framework": "5.8.*",
         "laravel/nova": "~2.0",
@@ -45,23 +43,11 @@
         },
         {
             "type": "path",
-            "url": "./nova-components/SuperProduct"
-        },
-        {
-            "type": "path",
             "url": "./nova-components/SuperCategory"
         },
         {
             "type": "path",
-            "url": "./nova-components/SuperDiscount"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/SuperCustomization"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/OrderManagement"
+            "url": "./nova-components/Invoicer"
         },
         {
             "type": "path",
@@ -69,7 +55,7 @@
         },
         {
             "type": "path",
-            "url": "./nova-components/Invoicer"
+            "url": "./nova-components/MenuBuilder"
         }
     ],
     "require-dev": {

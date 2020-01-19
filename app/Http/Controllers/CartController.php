@@ -17,6 +17,7 @@ use App\Coupon;
 use Mail;
 use PDF;
 use App\Invoicer;
+use Carbon\Carbon;
 
 
 class CartController extends Controller
@@ -53,12 +54,14 @@ class CartController extends Controller
         if($countProducts>0){
             return redirect()->back()->with('flash_message_error','Product already exist in Cart!');
         }
+
+        $time = Carbon::now();
         
                 
         DB::table('cart')
         ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
             'product_type' => $data['product_type'],'product_code' => $data['product_code'],
-            'price' => $data['price'],'quantity' => 1,'image' => $data['image'],'user_email' => $data['user_email'],'session_id' => $session_id]);
+            'price' => $data['price'],'quantity' => 1,'image' => $data['image'],'user_email' => $data['user_email'],'session_id' => $session_id,'created_at'=> $time]);
 
         return redirect('gotocart')->with('flash_message_success','Product has been added in Cart!');
 
